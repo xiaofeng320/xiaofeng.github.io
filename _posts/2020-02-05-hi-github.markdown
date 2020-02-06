@@ -1,0 +1,81 @@
+---
+layout:     post
+title:      "Hi,GitHub.io"
+subtitle:   " \"github.io搭建\""
+date:       2020-02-05 11:00:00
+author:     "xiaofeng"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - github 
+    - jeklly 
+---
+
+# github.io第一篇BLOG
+
+大概三年前尝鲜搭建了git.io，但是工作忙的原因（就是懒）一直空白着放在哪。现在也出不了门，有时间把写的东西整理整理了。
+    
+### github.io
+
+作为最大的同性交友网站，现在大部分公司和个人都将代码管理交由github来托管。
+github设计的[Pages](https://pages.github.com/)功能，允许用户自定义项目首页，用来替代默认的源码列表。所以，github Pages可以被认为是用户编写的、托管在github上的静态网页。
+    
+### jekyll
+
+是一个静态站点生成器，它会根据网页源码生成静态文件。它提供了模板、变量、插件等功能，所以实际上可以用来编写整个网站。本地编写符合Jekyll规范的网站源码，然后上传到github，由github生成并托管整个网站。
+
+##### 特点
+
+* 纯静态页面
+* 配合gitpage使用很方便
+* Liquid模板灵活，社区丰富,本站模板采用[huxblog-boilerplate](https://github.com/Huxpro/huxpro.github.io)
+* Markdown编写
+
+##### 安装
+
+通过gem安装jeklly，由于ruby.taobao.org 不在维护了需要切换到gems.ruby-china.com  
+修改方法：
+```
+$ gem update --system # 这里请翻墙一下
+$ gem -v
+2.6.3 #版本要2.6.X以上
+
+# 添加新的source ，并移除原source
+$ gem sources --add https://gems.ruby-china.com/ --remove https://ruby.taobao.org/
+$ gem sources -l
+https://gems.ruby-china.com
+# 确保只有 gems.ruby-china.com
+
+```
+其他问题参考[ruby-china](https://gems.ruby-china.com/)
+
+安装jeklly，参考[官网](https://jekyllrb.com/)
+
+```
+$ gem install bundler jekyll`
+$ jekyll new my-awesome-site`
+$ cd my-awesome-site`  
+$ bundle exec jekyll serve` 
+```
+
+##### boilerplate
+
+clone下代码
+
+```
+$ git clone git@github.com:Huxpro/huxblog-boilerplate.git`
+```
+
+这个模板有些配置好像有问题，需要修改一下
+
+* _config.yaml中  `gems 改为plugins`
+* _layouts/page.html等几个文件里有个语法错误,多了两个大括号，需要修改 `Liquid Warning: Liquid syntax error (line 87): Unexpected character { in "tag[1].size > {{site.featured-condition-size}}"`
+* Liquid 与用的是`and` 不是`&&`
+
+就可以 `jekyll serve` 就可以本地查看效果了。
+
+别忘了添加.gitignore  _site 不用上传
+
+
+> 此上就是gitpage和jeklly使用方法，后续就把之前各处记录文档挪过来了。
+
+
